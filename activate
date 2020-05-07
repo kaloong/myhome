@@ -7,10 +7,14 @@ if len( sys.argv) != 2:
 	print("Accept one virtenv paramter only.")
 	exit(1)
 
-filepath="%s/bin/activate"%sys.argv[1]
+filepath="bin/activate"
+target="%s"%sys.argv[1]
 try:
+        if os.path.exists( target ):
+            os.chdir( target)
+
 	if os.path.exists(filepath):
-		subprocess.call(["cd %s && bash --rcfile %s"%( sys.argv[1], filepath) ], shell=True )
+		subprocess.call(["bash --rcfile %s"%filepath ], shell=True )
 	else:
 		raise
 except:
