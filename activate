@@ -10,7 +10,7 @@ if len( sys.argv) != 2:
 filepath="%s/bin/activate"%sys.argv[1]
 try:
 	if os.path.exists(filepath):
-		subprocess.call(["bash --rcfile %s"%filepath ], shell=True )
+		subprocess.call(["cd %s && bash --rcfile %s"%( sys.argv[1], filepath) ], shell=True )
 	else:
 		raise
 except:
